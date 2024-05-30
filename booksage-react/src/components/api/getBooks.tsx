@@ -1,5 +1,5 @@
 export const fetchBookstoreData = async (name: string, query: string | null): Promise<any> => {
-    const url = `http://localhost:8080/api/bookstore/${name}` + (query === null ? "" : "/search?query="+query);
+    const url = `http://localhost:8080/api/bookstore/${name}` + (!query ? "" : "/search?query="+query);
 
     console.log(url);
     try {

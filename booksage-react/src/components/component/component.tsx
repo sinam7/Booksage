@@ -9,12 +9,13 @@ export function Component() {
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
 
     const handleSearch = () => {
-        setSearchTerm(query);
+        setSearchTerm(query.trim());
+        setQuery(query.trim());
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
-            setSearchTerm(query);
+            handleSearch();
         }
     };
 
