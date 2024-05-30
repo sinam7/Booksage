@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,19 @@ public class InterparkScrapperService extends ScrapperService {
         if (!element.isEmpty()) {
             text = element.getFirst().getText();
         } else {
-            text = priceEle.findElement(By.cssSelector("p.defaultNum")).getText();
+            WebElement book;
+            try {
+                book = priceEle.findElement(By.cssSelector("p.defaultNum"));
+                text = book.getText();
+            } catch (NoSuchElementException ex) {
+                try {
+                    book = priceEle.findElement(By.cssSelector("p.Fprice"));
+                    text = book.getText();
+                } catch (NoSuchElementException ex2) {
+                    book = priceEle.findElement(By.cssSelector("p"));
+                    text = book.getText();
+                }
+            }
         }
         String price = text.substring(0, text.indexOf("원") + 1);
         return new parsedResult(imageSrc, link, title, author, company, price);

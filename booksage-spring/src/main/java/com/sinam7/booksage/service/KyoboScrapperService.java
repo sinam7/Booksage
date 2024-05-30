@@ -62,7 +62,9 @@ public class KyoboScrapperService extends ScrapperService {
             String imageSrc = "https://contents.kyobobook.co.kr/sih/fit-in/200x0/pdt/"+bid+".jpg";
             String link = e.select("a.prod_link").attr("href");
             Elements info = e.select("div.prod_info_box");
-            String title = info.select("div.prod_name_group span").eachText().get(1);
+            Elements name = info.select("div.prod_name_group span");
+            if (name.isEmpty()) continue;
+            String title = name.eachText().get(1);
             String author = info.select("div.prod_author_info a.author").html().replace("\n", ", 역 ");
             String company = info.select("div.prod_author_info div.prod_publish a.text").html();
             Elements priceEle = e.select("div.prod_price span.price");
