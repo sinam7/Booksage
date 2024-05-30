@@ -10,6 +10,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 interface BookColumnProps {
     name: string;
     query: string | null;
+    displayName: string;
 }
 
 export interface BookProps {
@@ -21,7 +22,7 @@ export interface BookProps {
     imageSrc: string;
 }
 
-export function BookColumn({name, query}: BookColumnProps) {
+export function BookColumn({name, query, displayName}: BookColumnProps) {
     const [data, setData] = useState<BookProps[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -29,6 +30,8 @@ export function BookColumn({name, query}: BookColumnProps) {
     useEffect(() => {
         const getData = async () => {
             try {
+                setLoading(true);
+                console.log(name, query);
                 const result = await fetchBookstoreData(name, query);
                 setData(result);
             } catch (err: any) {
@@ -44,7 +47,7 @@ export function BookColumn({name, query}: BookColumnProps) {
     // @ts-ignore
     const loadingComponent = (idx) => {
 
-        return <Card>
+        return <Card key={idx}>
             <div className="flex items-center justify-between mx-4 my-3">
                 <div className="flex items-center gap-4">
                     <span className={"bold"}>{idx + 1}</span>
@@ -70,7 +73,7 @@ export function BookColumn({name, query}: BookColumnProps) {
                 </div>
             </div>
         </Card>
-        ;
+            ;
     }
 
     let loadingComponents = [];
@@ -94,7 +97,7 @@ export function BookColumn({name, query}: BookColumnProps) {
 
     return (
         <div className="space-y-4 border-r pr-8">
-            <h2 className="text-2xl font-bold">{name}</h2>
+            <h2 className="text-2xl font-bold">{displayName}</h2>
             <Card>
                 <CardContent className="space-y-2 mt-4">
                     {/*{loadingComponent}*/}
