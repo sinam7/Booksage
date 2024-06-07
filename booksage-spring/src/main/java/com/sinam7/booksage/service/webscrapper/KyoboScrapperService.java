@@ -1,7 +1,7 @@
-package com.sinam7.booksage.service;
+package com.sinam7.booksage.service.webscrapper;
 
-import com.sinam7.booksage.domain.KyoboBook;
-import com.sinam7.booksage.domain.KyoboBookRawJson;
+import com.sinam7.booksage.domain.book.KyoboBookDTO;
+import com.sinam7.booksage.domain.book.KyoboBookRawJson;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -27,7 +27,7 @@ public class KyoboScrapperService extends ScrapperService {
 
 
     @Override
-    public List<KyoboBook> getBooks() {
+    public List<KyoboBookDTO> getBooks() {
         KyoboBookRawJson raw = kyoboApiProductClient
                 .get()
                 .uri("/api/gw/pub/pdt/best-seller/total?" +
@@ -37,13 +37,13 @@ public class KyoboScrapperService extends ScrapperService {
                 .block(REQUEST_TIMEOUT);
         assert raw != null;
         List<KyoboBookRawJson.KyoboBookJson> kyoboBookJsons = raw.getData().getKyoboBookJson();
-        ArrayList<KyoboBook> res = new ArrayList<>();
-        for (KyoboBookRawJson.KyoboBookJson json : kyoboBookJsons) res.add(KyoboBook.build(json));
+        ArrayList<KyoboBookDTO> res = new ArrayList<>();
+        for (KyoboBookRawJson.KyoboBookJson json : kyoboBookJsons) res.add(KyoboBookDTO.build(json));
         return res;
     }
 
     @Override
-    public List<KyoboBook> searchBook(String query) {
+    public List<KyoboBookDTO> searchBook(String query) {
         String pathquery = "/search?keyword="+query+"&gbCode=TOT&target=total";
 
         Elements select;
@@ -55,7 +55,7 @@ public class KyoboScrapperService extends ScrapperService {
             throw new RuntimeException(e);
         }
 
-        ArrayList<KyoboBook> kyoboBooks = new ArrayList<>();
+        ArrayList<KyoboBookDTO> kyoboBooks = new ArrayList<>();
 
         for (Element e : select) {
             String bid = e.select("input.result_checkbox").attr("data-bid");
@@ -70,7 +70,7 @@ public class KyoboScrapperService extends ScrapperService {
             Elements priceEle = e.select("div.prod_price span.price");
             String price = priceEle.select("span.val").html() + priceEle.select("span.unit").html().replaceAll("&nbsp;", "");
 
-            kyoboBooks.add(new KyoboBook(title, author, company, price, link, imageSrc));
+            kyoboBooks.add(new KyoboBookDTO(title, author, company, price, link, imageSrc));
 
         }
 

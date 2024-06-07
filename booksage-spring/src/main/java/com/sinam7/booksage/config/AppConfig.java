@@ -1,4 +1,4 @@
-package com.sinam7.booksage;
+package com.sinam7.booksage.config;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

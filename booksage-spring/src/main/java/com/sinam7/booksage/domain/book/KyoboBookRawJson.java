@@ -1,11 +1,11 @@
-package com.sinam7.booksage.domain;
+package com.sinam7.booksage.domain.book;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import java.util.List;
 
-@Getter
+/** @noinspection unused*/
 public class KyoboBookRawJson {
     @JsonProperty("resultMessage")
     private String resultMessage;
@@ -14,6 +14,7 @@ public class KyoboBookRawJson {
     @JsonProperty("statusCode")
     private int statusCode;
     @JsonProperty("data")
+    @Getter
     private Data data;
 
     @Getter
@@ -25,10 +26,10 @@ public class KyoboBookRawJson {
         @JsonProperty("page")
         private int page;
         @JsonProperty("bestSeller")
+        @Getter
         private List<KyoboBookJson> kyoboBookJson;
     }
 
-    @Getter
     public static class KyoboBookJson {
         @JsonProperty("productInfo")
         private ProductInfo productInfo;
@@ -41,6 +42,7 @@ public class KyoboBookRawJson {
         @JsonProperty("saleLmttAge")
         private int saleLmttAge;
         @JsonProperty("cmdtCode")
+        @Getter
         private String cmdtCode;
         @JsonProperty("cmdtCdtnCode")
         private String cmdtCdtnCode;
@@ -71,6 +73,7 @@ public class KyoboBookRawJson {
         @JsonProperty("dscnRate")
         private int dscnRate;
         @JsonProperty("sapr")
+        @Getter
         private int sapr;
         @JsonProperty("price")
         private int price;
@@ -79,14 +82,18 @@ public class KyoboBookRawJson {
         @JsonProperty("rlseDate")
         private String rlseDate;
         @JsonProperty("pbcmName")
+        @Getter
         private String pbcmName;
         @JsonProperty("chrcName")
+        @Getter
         private String chrcName;
         @JsonProperty("cmdtName")
+        @Getter
         private String cmdtName;
         @JsonProperty("saleCmdtGrpDvsnCode")
         private String saleCmdtGrpDvsnCode;
         @JsonProperty("saleCmdtid")
+        @Getter
         private String saleCmdtid;
         @JsonProperty("prstRnkn")
         private int prstRnkn;

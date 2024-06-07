@@ -1,10 +1,10 @@
-package com.sinam7.booksage.domain;
+package com.sinam7.booksage.domain.book;
 
 import lombok.Getter;
 
 @Getter
-public class InterparkBook extends Book {
-    public InterparkBook(String title, String author, String company, String price, String link, String imageSrc) {
+public class InterparkBookDTO extends BookDTO {
+    public InterparkBookDTO(String title, String author, String company, String price, String link, String imageSrc) {
         super(title, author, company, price, link, imageSrc);
     }
 //

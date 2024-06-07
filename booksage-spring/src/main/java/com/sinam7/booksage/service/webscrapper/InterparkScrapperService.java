@@ -1,7 +1,7 @@
-package com.sinam7.booksage.service;
+package com.sinam7.booksage.service.webscrapper;
 
-import com.sinam7.booksage.domain.Book;
-import com.sinam7.booksage.domain.InterparkBook;
+import com.sinam7.booksage.domain.book.BookDTO;
+import com.sinam7.booksage.domain.book.InterparkBookDTO;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
@@ -85,12 +85,12 @@ public class InterparkScrapperService extends ScrapperService {
     }
 
     @Override
-    public List<InterparkBook> getBooks() {
+    public List<InterparkBookDTO> getBooks() {
 
         Elements select = getMS949Elements("/display/collectlist.do?_method=BestsellerHourNew201605&bestTp=1&dispNo=028",
                 "div.rankBestContentList ol li div.listItem");
 
-        ArrayList<InterparkBook> interparkBooks = new ArrayList<>();
+        ArrayList<InterparkBookDTO> interparkBooks = new ArrayList<>();
 
         for (Element e : select) {
             String imageSrc = e.select("div.coverImage img").attr("src");
@@ -101,14 +101,14 @@ public class InterparkScrapperService extends ScrapperService {
             Elements select1 = e.select("div.priceWrap span.price");
             String price = select1.select("em").html() + select1.select("span.currency").html();
 
-            interparkBooks.add(new InterparkBook(title, author, company, price, link, imageSrc));
+            interparkBooks.add(new InterparkBookDTO(title, author, company, price, link, imageSrc));
         }
 
         return interparkBooks;
     }
 
     @Override
-    public List<? extends Book> searchBook(String query) {
+    public List<? extends BookDTO> searchBook(String query) {
 
 
         List<WebElement> select;
@@ -120,11 +120,11 @@ public class InterparkScrapperService extends ScrapperService {
             throw new RuntimeException(e);
         }
 
-        ArrayList<InterparkBook> interparkBooks = new ArrayList<>();
+        ArrayList<InterparkBookDTO> interparkBooks = new ArrayList<>();
 
         for (WebElement e : select) {
             parsedResult result = getParsedResult(e);
-            interparkBooks.add(new InterparkBook(result.title(), result.author(), result.company(), result.price(), result.link(), result.imageSrc()));
+            interparkBooks.add(new InterparkBookDTO(result.title(), result.author(), result.company(), result.price(), result.link(), result.imageSrc()));
         }
 
         return interparkBooks;

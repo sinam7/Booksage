@@ -1,7 +1,7 @@
-package com.sinam7.booksage.controller;
+package com.sinam7.booksage.controller.webscrapper;
 
-import com.sinam7.booksage.domain.Book;
-import com.sinam7.booksage.service.ScrapperService;
+import com.sinam7.booksage.domain.book.BookDTO;
+import com.sinam7.booksage.service.webscrapper.ScrapperService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,13 +27,13 @@ public class BestSellerController {
     }
 
     @GetMapping("/{store}")
-    public List<Book> findAll(@PathVariable("store") String key) {
-        return (List<Book>) scrapperServiceMap.get(key + "ScrapperService").getBooks();
+    public List<BookDTO> findAll(@PathVariable("store") String key) {
+        return (List<BookDTO>) scrapperServiceMap.get(key + "ScrapperService").getBooks();
     }
 
     @GetMapping("/{store}/search")
-    public List<Book> search(@PathVariable("store") String key, @RequestParam("query") String query) {
-        return (List<Book>) scrapperServiceMap.get(key + "ScrapperService").searchBook(query);
+    public List<BookDTO> search(@PathVariable("store") String key, @RequestParam("query") String query) {
+        return (List<BookDTO>) scrapperServiceMap.get(key + "ScrapperService").searchBook(query);
     }
 
 

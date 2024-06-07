@@ -1,6 +1,9 @@
-package com.sinam7.booksage.service;
+package com.sinam7.booksage.service.webscrapper;
 
-import com.sinam7.booksage.domain.*;
+import com.sinam7.booksage.domain.book.BookDTO;
+import com.sinam7.booksage.domain.book.LibraryBookDTO;
+import com.sinam7.booksage.domain.book.LibraryBookBestRawJson;
+import com.sinam7.booksage.domain.book.LibraryBookQuerySearchRawJson;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,7 +21,7 @@ public class LibraryScrapperService extends ScrapperService {
     }
 
     @Override
-    public List<? extends Book> getBooks() {
+    public List<? extends BookDTO> getBooks() {
         LibraryBookBestRawJson raw = libraryApiProductClient
                 .get()
                 .uri("/pyxis-api/1/popular-charged-books?max=20&durationMonth=")
@@ -29,8 +32,8 @@ public class LibraryScrapperService extends ScrapperService {
         assert raw != null;
 
         List<LibraryBookBestRawJson.DataList> list = raw.getData().getDataList();
-        ArrayList<LibraryBook> res = new ArrayList<>();
-        for (LibraryBookBestRawJson.DataList json : list) res.add(LibraryBook.build(json));
+        ArrayList<LibraryBookDTO> res = new ArrayList<>();
+        for (LibraryBookBestRawJson.DataList json : list) res.add(LibraryBookDTO.build(json));
         return res;
     }
 
@@ -38,7 +41,7 @@ public class LibraryScrapperService extends ScrapperService {
     // GET
     // https://lib.kookmin.ac.kr/pyxis-api/1/collections/1/search?all=k|a|검색어&abc=
     @Override
-    public List<? extends Book> searchBook(String query) {
+    public List<? extends BookDTO> searchBook(String query) {
 
         LibraryBookQuerySearchRawJson raw = libraryApiProductClient
                 .get()
@@ -51,8 +54,8 @@ public class LibraryScrapperService extends ScrapperService {
         assert raw != null;
 
         List<LibraryBookQuerySearchRawJson.DataList> list = raw.getData().getDataList();
-        ArrayList<LibraryBook> res = new ArrayList<>();
-        for (LibraryBookQuerySearchRawJson.DataList json : list) res.add(LibraryBook.build(json));
+        ArrayList<LibraryBookDTO> res = new ArrayList<>();
+        for (LibraryBookQuerySearchRawJson.DataList json : list) res.add(LibraryBookDTO.build(json));
         return res;
 
     }

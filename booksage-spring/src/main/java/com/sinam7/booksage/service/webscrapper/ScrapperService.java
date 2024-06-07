@@ -1,6 +1,6 @@
-package com.sinam7.booksage.service;
+package com.sinam7.booksage.service.webscrapper;
 
-import com.sinam7.booksage.domain.Book;
+import com.sinam7.booksage.domain.book.BookDTO;
 import lombok.RequiredArgsConstructor;
 
 import java.time.Duration;
@@ -11,7 +11,7 @@ public abstract class ScrapperService {
 
     protected static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(10);
 
-    public abstract List<? extends Book> getBooks();
-    public abstract List<? extends Book> searchBook(String query);
+    public abstract List<? extends BookDTO> getBooks();
+    public abstract List<? extends BookDTO> searchBook(String query);
 
 }

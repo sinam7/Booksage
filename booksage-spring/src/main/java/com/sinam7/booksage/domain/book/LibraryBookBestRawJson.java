@@ -1,10 +1,11 @@
-package com.sinam7.booksage.domain;
+package com.sinam7.booksage.domain.book;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import java.util.List;
 
+/** @noinspection unused*/
 public class LibraryBookBestRawJson {
 
     @JsonProperty("data")

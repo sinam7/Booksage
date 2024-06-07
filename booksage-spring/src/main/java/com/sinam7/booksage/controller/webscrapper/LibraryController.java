@@ -1,7 +1,7 @@
-package com.sinam7.booksage.controller;
+package com.sinam7.booksage.controller.webscrapper;
 
-import com.sinam7.booksage.domain.Book;
-import com.sinam7.booksage.service.LibraryScrapperService;
+import com.sinam7.booksage.domain.book.BookDTO;
+import com.sinam7.booksage.service.webscrapper.LibraryScrapperService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,13 +29,13 @@ public class LibraryController {
     }
 
     @GetMapping("/search")
-    public List<Book> search(@RequestParam("query") String query) {
-        return (List<Book>) libraryScrapperService.searchBook(query);
+    public List<BookDTO> search(@RequestParam("query") String query) {
+        return (List<BookDTO>) libraryScrapperService.searchBook(query);
     }
 
     @GetMapping("")
-    public List<Book> findAll() {
-        return (List<Book>) libraryScrapperService.getBooks();
+    public List<BookDTO> findAll() {
+        return (List<BookDTO>) libraryScrapperService.getBooks();
     }
 
 }
