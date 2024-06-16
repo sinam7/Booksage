@@ -1,6 +1,7 @@
 import React from "react";
 import {Card, CardContent} from "@/components/ui/card";
-import {CheckIcon, XIcon} from "@/components/ui/icon";
+import {CheckIcon, IconBookmarkCheck, IconBookmarkX, XIcon} from "@/components/ui/icon";
+import {BookMarkedIcon} from "lucide-react";
 
 
 interface BookCardProps {
@@ -23,7 +24,7 @@ export function BookCard({title, author, publisher, price, imageSrc, href, isAva
             <div className="flex items-center gap-4">
                 <span className={"bold"}>{idx + 1}</span>
                 <img
-                    alt="Feature 1"
+                    alt={title.slice(0, Math.min(title.length, 5))}
                     className="rounded-md"
                     height={48}
                     src={imageSrc}
@@ -45,8 +46,8 @@ export function BookCard({title, author, publisher, price, imageSrc, href, isAva
                 </div>
             </div>
             {isAvailable ?
-                <CheckIcon className="w-5 h-5 text-green-500"/> :
-                <XIcon className="w-5 h-5 text-red-500"/>}
+                <IconBookmarkCheck className="w-5 h-5 text-green-500"/> :
+                <IconBookmarkX className="w-5 h-5 text-red-500"/>}
         </CardContent>
     </Card>);
 }
