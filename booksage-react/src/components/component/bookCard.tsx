@@ -1,7 +1,6 @@
 import React from "react";
 import {Card, CardContent} from "@/components/ui/card";
-import {CheckIcon, IconBookmarkCheck, IconBookmarkX, XIcon} from "@/components/ui/icon";
-import {BookMarkedIcon} from "lucide-react";
+import {IconBookmarkCheck, IconBookmarkX} from "@/components/ui/icon";
 
 
 interface BookCardProps {
@@ -35,7 +34,7 @@ export function BookCard({title, author, publisher, price, imageSrc, href, isAva
                     width={48}
                 />
                 <div className="space-y-1">
-                    <a href={href}><h4 className="font-medium">{title}</h4></a>
+                    <a href={href} target="_blank"><h4 className="font-medium">{title}</h4></a>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
                         <span>{author}</span>
                         <span className="mx-2">•</span>
