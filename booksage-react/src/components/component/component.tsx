@@ -1,5 +1,4 @@
 "use client"
-import {Logo} from "@/components/component/logo";
 import {SearchComponent} from "@/components/component/searchComponent";
 import {BookColumn} from "@/components/component/bookColumn";
 import React, {useState} from "react";
@@ -43,7 +42,12 @@ export function Component() {
     return (
         <div>
             <header className="flex items-center justify-between h-16 px-6 border-b">
-                <Logo/>
+                <div className="flex items-center justify-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="https://github.com/sinam7/Booksage/blob/master/booksage-react/logo.png?raw=true"
+                          width={48} height={48} alt="Booksage"/>
+                    Booksage
+                </div>
                 <SearchComponent
                     query={query}
                     setQuery={setQuery}
