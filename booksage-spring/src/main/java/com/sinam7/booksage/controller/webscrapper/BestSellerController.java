@@ -27,7 +27,7 @@ public class BestSellerController {
     }
 
     @GetMapping("/{store}")
-    public List<BookDTO> findAll(@PathVariable("store") String key) {
+    public List<BookDTO> getBestSellers(@PathVariable("store") String key) {
         return (List<BookDTO>) scrapperServiceMap.get(key + "ScrapperService").getBooks();
     }
 

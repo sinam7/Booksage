@@ -4,3 +4,6 @@
 /booksage-spring/.gradle/
 /booksage-spring/.idea/
 /booksage-spring/build/
+/build/
+/.gradle/
+next-env.d.ts

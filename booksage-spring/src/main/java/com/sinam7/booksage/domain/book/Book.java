@@ -1,7 +1,9 @@
 package com.sinam7.booksage.domain.book;
 
-import com.sinam7.booksage.domain.account.Account;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
@@ -15,10 +17,6 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "bookmark_user_id", referencedColumnName = "id", nullable = false)
-    private Account bookmarkUser;
 
     private String title;
     private String author;
