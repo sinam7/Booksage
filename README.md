@@ -1,6 +1,12 @@
 # Booksage (북세이지)
+2024-1학기 객체지향분석및설계 교과목에 자유주제로 제출한 프로젝트입니다.
+
+[해당 과목에서의 문서 산출물 등이 담긴 최종 제출본은 이 링크를 통해 확인 가능합니다.](https://www.notion.so/sinam7/HW05-Final-0cb80e3f875143b6966aeec2ecd46a55)
 <img width="1710" alt="image" src="https://github.com/user-attachments/assets/1f550cff-1838-4cfc-bcf8-a3d68ce9543f" />
 Booksage는 국민대학교 도서관과 주요 온라인 서점의 도서 정보를 한 눈에 비교할 수 있는 웹 서비스입니다.
+
+
+
 
 ###### (위 스크린샷은 25.01.27. 인터파크도서가 운영 중단된 상태임을 알립니다.)
 
