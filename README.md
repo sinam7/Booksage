@@ -1,6 +1,9 @@
 # Booksage (북세이지)
-
+<img width="1710" alt="image" src="https://github.com/user-attachments/assets/1f550cff-1838-4cfc-bcf8-a3d68ce9543f" />
 Booksage는 국민대학교 도서관과 주요 온라인 서점의 도서 정보를 한 눈에 비교할 수 있는 웹 서비스입니다.
+
+###### (위 스크린샷은 25.01.27. 인터파크도서가 운영 중단된 상태임을 알립니다.)
+
 
 ## 주요 기능
 
@@ -15,7 +18,6 @@ Booksage는 국민대학교 도서관과 주요 온라인 서점의 도서 정�
 - Next.js 14
 - TypeScript
 - Tailwind CSS
-- shadcn/ui
 
 ### Backend
 - Spring Boot 3.2
@@ -45,7 +47,6 @@ npm run dev
 ### Backend (booksage-spring)
 ```bash
 cd booksage-spring
-chmod +x gradlew  # gradlew 파일에 실행 권한 부여
 ./gradlew bootRun
 ```
 
