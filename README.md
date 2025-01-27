@@ -1,14 +1,68 @@
+# Booksage (북세이지)
 
-Frontend - React
+Booksage는 국민대학교 도서관과 주요 온라인 서점의 도서 정보를 한 눈에 비교할 수 있는 웹 서비스입니다.
 
-	 cd ./booksage-react
-	 npm install
-	 npm run dev
+## 주요 기능
 
-Backend - Spring boot
+- **통합 도서 검색**: 성곡도서관, 교보문고, 인터파크 도서의 도서 정보를 동시에 검색
+- **실시간 가격 비교**: 온라인 서점별 도서 가격 비교 기능
+- **도서관 소장 여부 확인**: 성곡도서관의 도서 소장 여부 실시간 확인
+- **최근 검색어**: 최근 검색한 5개의 키워드 저장 및 빠른 재검색 지원
 
-	 cd ./booksage-spring
-	 gradle build
-	  - run jar file in ./build
-	  - or Simply run main() in BooksageApplication.java in any IDE (InteliJ recommended)
+## 기술 스택
 
+### Frontend
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+
+### Backend
+- Spring Boot 3.2
+- Java 21
+- JPA
+- H2 Database
+- Selenium & JSoup (웹 스크래핑)
+
+## 시스템 아키텍처
+
+```
+Frontend (Next.js) <-> Backend (Spring Boot) <-> External Services
+                                                - 성곡도서관
+                                                - 교보문고
+                                                - 인터파크
+```
+
+## 설치 및 실행 방법
+
+### Frontend (booksage-react)
+```bash
+cd booksage-react
+npm install
+npm run dev
+```
+
+### Backend (booksage-spring)
+```bash
+cd booksage-spring
+chmod +x gradlew  # gradlew 파일에 실행 권한 부여
+./gradlew bootRun
+```
+
+## API 엔드포인트
+
+### 도서 검색 API
+- `GET /api/bookstore/{store}` - 서점별 베스트셀러 목록 조회
+- `GET /api/bookstore/{store}/search?query={keyword}` - 도서 검색
+- `GET /api/bookstore/library/request-book` - 도서관 도서 신청 페이지 리다이렉트
+
+### 회원 관련 API
+- `POST /api/member/register` - 회원가입
+- `POST /api/member/bookmarks` - 북마크 추가
+- `DELETE /api/member/bookmarks/{bookmarkId}` - 북마크 삭제
+- `GET /api/member/bookmarks` - 북마크 목록 조회
+
+## 주요 특징
+
+1. **실시간 데이터**: 웹 스크래핑을 통한 실시간 도서 정보 제공
+2. **검색 기록 관리**: 최근 검색어 저장 및 관리 기능
