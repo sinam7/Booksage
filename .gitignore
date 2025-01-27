@@ -10,3 +10,7 @@ next-env.d.ts
 /.vscode/
 
 .DS_Store
+
+# Docker
+.docker/
+docker-compose.override.yml
