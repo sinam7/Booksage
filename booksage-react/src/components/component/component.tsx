@@ -2,6 +2,7 @@
 import {SearchComponent} from "@/components/component/searchComponent";
 import {BookColumn} from "@/components/component/bookColumn";
 import React, {useState} from "react";
+import { ThemeToggle } from "./themeToggle"
 
 export function Component() {
     const [query, setQuery] = useState<string>('');
@@ -41,12 +42,13 @@ export function Component() {
 
     return (
         <div>
-            <header className="flex items-center justify-between h-16 px-6 border-b">
-                <div className="flex items-center justify-center">
+            <header className="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
+                <div className="flex items-center gap-4">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="https://github.com/sinam7/Booksage/blob/master/booksage-react/logo.png?raw=true"
                           width={48} height={48} alt="Booksage"/>
-                    Booksage
+                    <span>Booksage</span>
+                    <ThemeToggle />
                 </div>
                 <SearchComponent
                     query={query}

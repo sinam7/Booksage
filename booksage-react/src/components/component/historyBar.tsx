@@ -27,20 +27,12 @@ export function HistoryBar({handleSearch, history, setHistory, setQuery}: Histor
 
 
     return (
-        <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{display: 'flex', flexDirection: 'row'}} className="text-gray-900 dark:text-gray-100">
             {history.length != 0 && <span>Recent:</span>}
             {history.map((item, index) => (
                 <div
                     key={index}
-                    style={{
-                        margin: '0 10px',
-                        cursor: 'pointer',
-                        textDecoration: 'underline',
-                        color: 'blue',
-                        width: 'fit-content',
-                        minWidth: '100px',
-                        textAlign: 'center'
-                    }}
+                    className="mx-2 cursor-pointer underline text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 min-w-[100px] text-center"
                     onClick={(e) => click(item)}>
                     {item}
                 </div>

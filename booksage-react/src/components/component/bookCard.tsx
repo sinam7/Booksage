@@ -21,7 +21,7 @@ export function BookCard({title, author, publisher, price, imageSrc, href, isAva
     return (<Card>
         <CardContent className="flex items-center justify-between mt-4">
             <div className="flex items-center gap-4">
-                <span className={"bold"}>{idx + 1}</span>
+                <span className="bold text-gray-900 dark:text-gray-100">{idx + 1}</span>
                 <img
                     alt={title.slice(0, Math.min(title.length, 5))}
                     className="rounded-md"
@@ -34,7 +34,9 @@ export function BookCard({title, author, publisher, price, imageSrc, href, isAva
                     width={48}
                 />
                 <div className="space-y-1">
-                    <a href={href} target="_blank"><h4 className="font-medium">{title}</h4></a>
+                    <a href={href} target="_blank">
+                        <h4 className="font-medium text-gray-900 dark:text-gray-100">{title}</h4>
+                    </a>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
                         <span>{author}</span>
                         <span className="mx-2">•</span>

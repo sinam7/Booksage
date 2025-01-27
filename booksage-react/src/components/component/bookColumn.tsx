@@ -100,8 +100,8 @@ export function BookColumn({name, query, displayName}: BookColumnProps) {
     );
 
     return (
-        <div className="space-y-4 border-r pr-8">
-            <h2 className="text-2xl font-bold">{displayName}</h2>
+        <div className="space-y-4 border-r border-gray-200 dark:border-gray-800 pr-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{displayName}</h2>
             <Card>
                 <CardContent className="space-y-2 mt-4">
                     {/*{loadingComponent}*/}
