@@ -8,3 +8,5 @@
 /.gradle/
 next-env.d.ts
 /.vscode/
+
+.DS_Store
