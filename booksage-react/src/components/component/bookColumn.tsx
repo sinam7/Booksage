@@ -81,19 +81,23 @@ export function BookColumn({name, query, displayName}: BookColumnProps) {
         loadingComponents.push(loadingComponent(i));
     }
 
-    const cardContent =
+    const cardContent = data.length > 0 ? (
         data.map((content: BookProps, idx: number) => (
             <BookCard key={idx}
-                      idx={idx}
-                      title={content.title}
-                      author={content.author}
-                      publisher={content.company}
-                      price={content.price}
-                      imageSrc={content.imageSrc}
-                      href={content.link}
-                      isAvailable={true}/>
+                     idx={idx}
+                     title={content.title}
+                     author={content.author}
+                     publisher={content.company}
+                     price={content.price}
+                     imageSrc={content.imageSrc}
+                     href={content.link}
+                     isAvailable={true}/>
         ))
-    ;
+    ) : (
+        <div className="flex justify-center items-center h-40 text-gray-500">
+            조회 결과가 없습니다. 검색어를 변경하시거나, 해당 사이트의 상태를 확인해 주세요.
+        </div>
+    );
 
     return (
         <div className="space-y-4 border-r pr-8">
