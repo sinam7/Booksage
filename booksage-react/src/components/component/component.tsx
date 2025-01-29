@@ -4,7 +4,15 @@ import {BookColumn} from "@/components/component/bookColumn";
 import React, {useState} from "react";
 import { ThemeToggle } from "./themeToggle"
 
-export function Component() {
+interface ComponentProps {
+  initialData: {
+    library: any[];
+    kyobo: any[];
+    interpark: any[];
+  }
+}
+
+export function Component({ initialData }: ComponentProps) {
     const [query, setQuery] = useState<string>('');
     const [searchTerm, setSearchTerm] = useState<string | null>(null);
     const [history, setHistory] = useState<string[]>([]);
@@ -61,9 +69,9 @@ export function Component() {
             </header>
             <div className="container mx-auto py-2 m-4">
                 <div className="grid grid-cols-3 gap-8">
-                    <BookColumn name={"library"} query={searchTerm} displayName={"성곡도서관"}/>
-                    <BookColumn name={"kyobo"} query={searchTerm} displayName={"교보문고"}/>
-                    <BookColumn name={"interpark"} query={searchTerm} displayName={"인터파크 도서"}/>
+                    <BookColumn name="library" query={searchTerm} displayName="성곡도서관" initialData={initialData.library}/>
+                    <BookColumn name="kyobo" query={searchTerm} displayName="교보문고" initialData={initialData.kyobo}/>
+                    <BookColumn name="interpark" query={searchTerm} displayName="인터파크 도서" initialData={initialData.interpark}/>
                 </div>
             </div>
         </div>

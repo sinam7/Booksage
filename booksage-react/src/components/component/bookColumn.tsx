@@ -11,6 +11,7 @@ interface BookColumnProps {
     name: string;
     query: string | null;
     displayName: string;
+    initialData: BookProps[];
 }
 
 export interface BookProps {
@@ -57,26 +58,26 @@ const NoResultsIcon = () => (
     </svg>
 );
 
-export function BookColumn({name, query, displayName}: BookColumnProps) {
-    const [data, setData] = useState<BookProps[]>([]);
+export function BookColumn({name, query, displayName, initialData}: BookColumnProps) {
+    const [data, setData] = useState<BookProps[]>(initialData);
     const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        const getData = async () => {
-            try {
-                setLoading(true);
-                console.log(name, query);
-                const result = await fetchBookstoreData(name, query);
-                setData(result);
-            } catch (err: any) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        getData();
+        if (query) {
+            const getData = async () => {
+                try {
+                    setLoading(true);
+                    const result = await fetchBookstoreData(name, query);
+                    setData(result);
+                } catch (err: any) {
+                    setError(err.message);
+                } finally {
+                    setLoading(false);
+                }
+            };
+            getData();
+        }
     }, [name, query]);
 
     // @ts-ignore
